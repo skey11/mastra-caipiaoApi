@@ -20,11 +20,11 @@ if (code.includes('__metaUrl')) {
 const patched = code.replace(
   /const __filename = cjsUrl\.fileURLToPath\(import\.meta\.url\);\s*const __dirname = cjsPath\.dirname\(__filename\);\s*const require = cjsModule\.createRequire\(import\.meta\.url\);/,
   [
-    "const __metaUrl = (typeof import\\.meta !== 'undefined' && import.meta.url) ? import.meta.url : 'file:///mastra.mjs';",
+    "const __metaUrl = (typeof import.meta !== 'undefined' && import.meta.url) ? import.meta.url : 'file:///mastra.mjs';",
     "const __filename = cjsUrl.fileURLToPath(__metaUrl);",
     "const __dirname = cjsPath.dirname(__filename);",
     "const require = cjsModule.createRequire(__metaUrl);",
-  ].join('\\n'),
+  ].join('\n'),
 );
 
 fs.writeFileSync(target, patched);
