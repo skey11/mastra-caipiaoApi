@@ -38,10 +38,16 @@ const lotteryHistory = [
 const RED_RANGE = 33;
 const BLUE_RANGE = 16;
 
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
+};
+
 const json = (data, status = 200) =>
   new Response(JSON.stringify(data), {
     status,
-    headers: { 'content-type': 'application/json;charset=utf-8' },
+    headers: { 'content-type': 'application/json;charset=utf-8', ...CORS_HEADERS },
   });
 
 const parseBody = async (request) => {
@@ -149,6 +155,9 @@ async function handleAnalyze(req) {
 export default {
   async fetch(request) {
     const url = new URL(request.url);
+    if (request.method === 'OPTIONS') {
+      return new Response(null, { status: 204, headers: CORS_HEADERS });
+    }
     if (request.method === 'POST' && (url.pathname === '/chat' || url.pathname === '/analyze')) {
       return handleAnalyze(request);
     }
