@@ -1,7 +1,10 @@
-name = "my-mastra-app"
-main = ".mastra/output/index.mjs"
+name = "caipiao"
+main = "worker.mjs"
 compatibility_date = "2024-11-21"
 compatibility_flags = ["nodejs_compat"]
+
+[build.upload]
+format = "modules"
 
 # Uncomment and set your Cloudflare account details if not already provided via env:
 # account_id = ""
