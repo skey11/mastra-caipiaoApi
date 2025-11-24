@@ -1,0 +1,8 @@
+name = "my-mastra-app"
+main = ".mastra/output/index.mjs"
+compatibility_date = "2024-11-21"
+compatibility_flags = ["nodejs_compat"]
+
+# Uncomment and set your Cloudflare account details if not already provided via env:
+# account_id = ""
+# routes = []
